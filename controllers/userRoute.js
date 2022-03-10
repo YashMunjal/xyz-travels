@@ -4,12 +4,29 @@ const User = require("../models/User");
 const bcrypt = require("bcryptjs");
 
 module.exports = function (app) {
+  app.get('/',function(req,res,next){
+    if(req.user){
+      res.redirect('/home')
+    }else
+    res.render('index')
+  })
+  app.get('/components',function(req,res,next){
+
+    res.render('components')
+  })
+
+
   app.get("/login", function (req, res, next) {
     if (req.user) return res.redirect("/home");
     else {
       // res.render("accounts/login", { name: undefined });
-      var LoginMessage=req.flash("loginMessage") || "Login not successful"
-      res.json(LoginMessage);
+    //   var LoginMessage=req.flash("loginMessage")
+    //   if(LoginMessage.length==0){
+    //     res.json("Login not successful")
+    //   }else
+    //   res.json(LoginMessage);
+    // }
+    res.render('login')
     }
   });
   app.post(
@@ -24,7 +41,7 @@ module.exports = function (app) {
     var userFound = await User.findOne({ email: req.body.email });
     if (userFound) {
       console.log("exists");
-      return res.redirect("/login");
+      return res.redirect("/");
     }
     var user = new User();
 
@@ -35,25 +52,37 @@ module.exports = function (app) {
        await user.save(function (err) {
          //res.json(user);
        });
-    res.json("Go for sign in");
+    res.redirect('/login')
     //await  res.render('accounts/login',{ name: undefined });
   });
 
   app.get("/home", async (req, res, next) => {
     if (req.user) {
-
         var userFound = await User.findOne({email:req.user.email})
 
         if(userFound.userType==="admin"){
                 res.redirect('/admin/home')
+        }else{
+          res.render('home')
         }
-
-      res.json({
-        Status: true,
-        Message: "Welcome",
-      });
     } else {
-      res.json("Login required");
+      res.redirect("/");
+    }
+  });
+
+  app.get("/admin/home", async (req, res, next) => {
+    if (req.user) {
+        var userFound = await User.findOne({email:req.user.email})
+
+        if(userFound.userType==="admin"){
+                res.render('home')
+        }
+          else{
+              res.redirect('/')
+          }
+        
+    } else {
+      res.redirect("/");
     }
   });
 

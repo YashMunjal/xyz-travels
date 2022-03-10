@@ -15,10 +15,15 @@ const { mongo_creds, appSessionCreds } = require("./configs/creds");
 const app = express();
 connectDB();
 
+app.use(express.static(__dirname + "/public"));
+
+app.engine("ejs", engine);
+app.set("view engine", "ejs");
+
 //For parsing of post data
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(morgan("dev"));
+//app.use(morgan("dev"));
 app.use(cookieParser());
 
 //For Session storage of user
@@ -40,10 +45,9 @@ app.use(function (req, res, next) {
   next();
 });
 
-require('./controllers/userRoute')(app)
-require('./controllers/admin/adminRoutes')(app)
-require('./controllers/customer/customerRoutes')(app)
-
+require("./controllers/userRoute")(app);
+require("./controllers/admin/adminRoutes")(app);
+require("./controllers/customer/customerRoutes")(app);
 
 var PORT = process.env.PORT || 3000;
 
