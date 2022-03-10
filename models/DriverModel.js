@@ -7,7 +7,7 @@ const driverSchema=new mongoose.Schema({
     city:{type:String},
     state:{type:String},
     pincode:{type:Number},
-    mobileNumber:{type:Number},
+    mobileNumber:{type:String},
     vehicleId:{type:mongoose.Schema.Types.ObjectId,ref:'Vehicle'}
 })
 

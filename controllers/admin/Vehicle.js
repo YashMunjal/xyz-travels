@@ -1,16 +1,16 @@
-const Driver = require("../../models/DriverModel");
+const Vehicle = require("../../models/vehicleModel");
 
 module.exports = function (app) {
-  app.get("/admin/get-all-driver-details", async (req, res) => {
+  app.get("/admin/get-all-vehicle-details", async (req, res) => {
     if (req.user) {
       if (req.user.usertype === "admin") {
-        Driver.find({}, (err, driver) => {
-          if (driver.length !== 0) {
-            res.json(driver);
+        Vehicle.find({}, (err, vehicle) => {
+          if (vehicle.length !== 0) {
+            res.json(vehicle);
           } else {
             res.json({
               status: false,
-              message: "No driver found",
+              message: "No vehicle found",
             });
           }
         });
@@ -28,24 +28,10 @@ module.exports = function (app) {
     }
   });
 
-  app.get("/admin/driver-details/:id", async (req, res) => {
+  app.get("/admin/vehicle-details/:id", async (req, res) => {
     if (req.user) {
       if (req.user.usertype === "admin") {
-        var driver;
-        await Driver.find({_id:req.params.id},function(err,driverFound){
-          driver=driverFound;
-        })
-        if(driver){
-          res.json({
-            status:true,
-            driver
-          })
-        }else{
-          res.json({
-            status:false,
-            message:"No Driver Found"
-          })
-        }
+
       } else {
         res.json({
           status: false,
@@ -60,21 +46,20 @@ module.exports = function (app) {
     }
   });
 
-  app.post("/admin/add-driver", async (req, res) => {
+  app.post("/admin/add-vehicle", async (req, res) => {
     if (req.user) {
       if (req.user.usertype === "admin") {
-        var driver = new Driver();
-        driver.name = req.body.name;
-        driver.aadharNumber = req.body.aadharNumber;
-        driver.address = req.body.address;
-        driver.city = req.body.city;
-        driver.state = req.body.state;
-        driver.pincode = req.body.pincode;
-        driver.mobileNumber = req.body.mobileNumber;
+        var vehicle = new Vehicle();
+        vehicle.vehicleType=req.body.vehicleType
+        vehicle.vehicleNumber=req.body.vehicleNumber
+        vehicle.vehicleMake=req.body.vehicleMake
+        vehicle.vehicleCapacity=req.body.vehicleCapacity
+        vehicle.vehicleFair=req.body.vehicleFair
+        vehicle.vehicleDriver=req.body.vehicleDriver
         await driver.save(function (err) {});
         res.json({
           status: true,
-          message: "Driver Added Succesfully",
+          message: "Vehicle Added Succesfully",
         });
       } else {
         res.json({
