@@ -42,6 +42,7 @@ app.use(function (req, res, next) {
 
 require('./controllers/userRoute')(app)
 require('./controllers/admin/adminRoutes')(app)
+require('./controllers/customer/customerRoutes')(app)
 
 
 var PORT = process.env.PORT || 3000;

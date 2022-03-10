@@ -46,8 +46,6 @@ module.exports = function (app) {
 
         if(userFound.userType==="admin"){
                 res.redirect('/admin/home')
-        }else{
-
         }
 
       res.json({
