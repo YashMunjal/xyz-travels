@@ -29,9 +29,11 @@ passport.use('local-login',new LocalStrategy({
         if(err) return done(err);
 
         if(!user){
+            req.flash('loginMessage','User doesnt exist')
             return done(null,false)
         }
         if(user.password!=password){
+            req.flash('loginMessage','Password is wrong')
             return done(null,false)
         }
         req.flash('loginMessage','Successfully login')

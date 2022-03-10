@@ -8,7 +8,8 @@ module.exports = function (app) {
     if (req.user) return res.redirect("/home");
     else {
       // res.render("accounts/login", { name: undefined });
-      res.json("Login needed!");
+      var LoginMessage=req.flash("loginMessage") || "Login not successful"
+      res.json(LoginMessage);
     }
   });
   app.post(
@@ -31,9 +32,9 @@ module.exports = function (app) {
     user.name = req.body.name;
     user.email = req.body.email;
     user.password = req.body.password;
-    //    await user.save(function (err) {
-    //      //res.json(user);
-    //    });
+       await user.save(function (err) {
+         //res.json(user);
+       });
     res.json("Go for sign in");
     //await  res.render('accounts/login',{ name: undefined });
   });
@@ -44,7 +45,7 @@ module.exports = function (app) {
         var userFound = await User.findOne({email:req.user.email})
 
         if(userFound.userType==="admin"){
-                
+                res.redirect('/admin/home')
         }else{
 
         }
@@ -56,5 +57,10 @@ module.exports = function (app) {
     } else {
       res.json("Login required");
     }
+  });
+
+  app.get("/logout", (req, res, next) => {
+    req.logout();
+    res.redirect("/");
   });
 };
