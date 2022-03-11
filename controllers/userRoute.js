@@ -58,9 +58,7 @@ module.exports = function (app) {
 
   app.get("/home", async (req, res, next) => {
     if (req.user) {
-        var userFound = await User.findOne({email:req.user.email})
-
-        if(userFound.userType==="admin"){
+        if(req.user.email==="admin@gmail.com"){
                 res.redirect('/admin/home')
         }else{
           res.render('home')
@@ -74,8 +72,8 @@ module.exports = function (app) {
     if (req.user) {
         var userFound = await User.findOne({email:req.user.email})
 
-        if(userFound.userType==="admin"){
-                res.render('home')
+        if(req.user.email==="admin@gmail.com"){
+                res.render('adminHome')
         }
           else{
               res.redirect('/')

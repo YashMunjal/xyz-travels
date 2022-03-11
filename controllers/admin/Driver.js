@@ -62,7 +62,7 @@ module.exports = function (app) {
 
   app.post("/admin/add-driver", async (req, res) => {
     if (req.user) {
-      if (req.user.usertype === "admin") {
+      if (req.user.email==="admin@gmail.com") {
         var driver = new Driver();
         driver.name = req.body.name;
         driver.aadharNumber = req.body.aadharNumber;
@@ -72,10 +72,7 @@ module.exports = function (app) {
         driver.pincode = req.body.pincode;
         driver.mobileNumber = req.body.mobileNumber;
         await driver.save(function (err) {});
-        res.json({
-          status: true,
-          message: "Driver Added Succesfully",
-        });
+        res.redirect('/')
       } else {
         res.json({
           status: false,

@@ -18,50 +18,63 @@
             <div class="row h-100 align-items-center">
                 
                 <div class="col-md-4 d-none d-md-block">
-                    <form class="header-form" action="/login" method="post">
-                        <div class="head">Login</div>
+                    <form class="header-form" action="/admin/add-driver" method="post">
+                        <div class="head">Add Driver</div>
                         <div class="body">
                             <div class="form-group">
-                                <input type="email" name="email" class="form-control" placeholder="Email*">
+                                <input type="name" name="name" class="form-control" placeholder="Name*">
                             </div>
                             <div class="form-group">
-                                <input type="password" name="password" class="form-control" placeholder="Password*">
+                                <input type="text" name="aadharNumber" class="form-control" placeholder="Aadhar Number*">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" name="Address" class="form-control" placeholder="Home Address*">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" name="city" class="form-control" placeholder="City*">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" name="state" class="form-control" placeholder="State*">
+                            </div>
+                            <div class="form-group">
+                                <input type="number" name="pincode" class="form-control" placeholder="Pincode*">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" name="mobileNumber" class="form-control" placeholder="Mobile Number*">
                             </div>
                         </div>
                         <div class="footer">
-                            <button class="btn btn-primary btn-block">Login</button>
+                            <button class="btn btn-primary btn-block">Add Driver</button>
                         </div>
                     </form> 
                 </div>
                 <div class="col-md-4 d-none d-md-block">
-                    <form class="header-form" action="/login" method="post">
-                        <div class="head">Login</div>
+                    <form class="header-form" action="/admin/add-vehicle" method="post">
+                        <div class="head">Add Vehicle</div>
                         <div class="body">
                             <div class="form-group">
-                                <input type="email" name="email" class="form-control" placeholder="Email*">
+                                <input type="text" name="vehicleNumber" class="form-control" placeholder="Vehicle Number*">
                             </div>
                             <div class="form-group">
-                                <input type="password" name="password" class="form-control" placeholder="Password*">
+                                <input type="text" name="vehicleMake" class="form-control" placeholder="Vehicle Make*">
+                            </div>
+                            <div class="form-group">
+                                <input type="number" name="vehicleCapacity" class="form-control" placeholder="Vehicle Capacity*">
+                            </div>
+                            <div class="form-group">
+                                <input type="number" name="vehicleFair" class="form-control" placeholder="Vehicle Fair*">
                             </div>
                         </div>
                         <div class="footer">
-                            <button class="btn btn-primary btn-block">Login</button>
+                            <button class="btn btn-primary btn-block">Add vehicle</button>
                         </div>
                     </form> 
                 </div>
                 <div class="col-md-4 d-none d-md-block">
-                    <form class="header-form" action="/login" method="post">
-                        <div class="head">Login</div>
-                        <div class="body">
-                            <div class="form-group">
-                                <input type="email" name="email" class="form-control" placeholder="Email*">
-                            </div>
-                            <div class="form-group">
-                                <input type="password" name="password" class="form-control" placeholder="Password*">
-                            </div>
-                        </div>
+                    <form class="header-form">
+                        <div class="head">View Driver and Vehicle</div>
                         <div class="footer">
-                            <button class="btn btn-primary btn-block">Login</button>
+                            <a href=""><button class="btn btn-primary btn-block">View</button></a>
                         </div>
                     </form> 
                 </div>
@@ -105,7 +118,7 @@
 	<script src="assets/vendors/bootstrap/bootstrap.affix.js"></script>
 
     <!-- Rubic js -->
-    <script src="assets/js/paradise.js"></script>
+    <script src="/assets/js/paradise.js"></script>
 
 </body>
 </html>
