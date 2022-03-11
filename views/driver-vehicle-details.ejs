@@ -16,68 +16,39 @@
     <header class="header d-flex justify-content-center">
         <div class="container">
             <div class="row h-100 align-items-center">
-                
+                <% for(var i=0; i < driverData.length; i++) { %>
                 <div class="col-md-4 d-none d-md-block">
                     <form class="header-form" action="/admin/add-driver" method="post">
-                        <div class="head">Add Driver</div>
+                        <div class="head">Driver Details - <%= driverData[i].name %></div>
                         <div class="body">
+                            
                             <div class="form-group">
-                                <input type="name" name="name" class="form-control" placeholder="Name*">
+                                <input type="name" name="name" class="form-control" placeholder="<%= driverData[i].name %>" disabled>
                             </div>
                             <div class="form-group">
-                                <input type="text" name="aadharNumber" class="form-control" placeholder="Aadhar Number*">
+                                <input type="text" name="aadharNumber" class="form-control" placeholder="<%= driverData[i].aadharNumber %>" disabled>
                             </div>
                             <div class="form-group">
-                                <input type="text" name="Address" class="form-control" placeholder="Home Address*">
+                                <input type="text" name="Address" class="form-control" placeholder="<%= driverData[i].Address %>" disabled>
                             </div>
                             <div class="form-group">
-                                <input type="text" name="city" class="form-control" placeholder="City*">
+                                <input type="text" name="city" class="form-control" placeholder="<%= driverData[i].city %>" disabled>
                             </div>
                             <div class="form-group">
-                                <input type="text" name="state" class="form-control" placeholder="State*">
+                                <input type="text" name="state" class="form-control" placeholder="<%= driverData[i].state %>" disabled>
                             </div>
                             <div class="form-group">
-                                <input type="number" name="pincode" class="form-control" placeholder="Pincode*">
+                                <input type="number" name="pincode" class="form-control" placeholder="<%= driverData[i].pincode %>" disabled>
                             </div>
                             <div class="form-group">
-                                <input type="text" name="mobileNumber" class="form-control" placeholder="Mobile Number*">
+                                <input type="text" name="mobileNumber" class="form-control" placeholder="<%= driverData[i].mobileNumber %>" disabled>
                             </div>
-                        </div>
-                        <div class="footer">
-                            <button class="btn btn-primary btn-block">Add Driver</button>
+                            
+                        
                         </div>
                     </form> 
                 </div>
-                <div class="col-md-4 d-none d-md-block">
-                    <form class="header-form" action="/admin/add-vehicle" method="post">
-                        <div class="head">Add Vehicle</div>
-                        <div class="body">
-                            <div class="form-group">
-                                <input type="text" name="vehicleNumber" class="form-control" placeholder="Vehicle Number*">
-                            </div>
-                            <div class="form-group">
-                                <input type="text" name="vehicleMake" class="form-control" placeholder="Vehicle Make*">
-                            </div>
-                            <div class="form-group">
-                                <input type="number" name="vehicleCapacity" class="form-control" placeholder="Vehicle Capacity*">
-                            </div>
-                            <div class="form-group">
-                                <input type="number" name="vehicleFair" class="form-control" placeholder="Vehicle Fair*">
-                            </div>
-                        </div>
-                        <div class="footer">
-                            <button class="btn btn-primary btn-block">Add vehicle</button>
-                        </div>
-                    </form> 
-                </div>
-                <div class="col-md-4 d-none d-md-block">
-                    <div class="header-form">
-                        <div class="head">View Driver and Vehicle</div>
-                        <div class="footer">
-                            <a href="/admin/get-all-driver-details"><button class="btn btn-primary btn-block">View</button></a>
-                        </div>
-                    </div> 
-                </div>
+                <% } %>
             </div>  
         </div>
     </header>

@@ -5,14 +5,10 @@ module.exports = function (app) {
     if (req.user) {
       if (req.user.usertype === "admin") {
         Driver.find({}, (err, driver) => {
-          if (driver.length !== 0) {
-            res.json(driver);
-          } else {
-            res.json({
-              status: false,
-              message: "No driver found",
-            });
-          }
+          
+            res.render('driver-vehicle-details',{driverData:driver});
+          
+  
         });
       } else {
         res.json({
@@ -60,6 +56,7 @@ module.exports = function (app) {
     }
   });
 
+  
   app.post("/admin/add-driver", async (req, res) => {
     if (req.user) {
       if (req.user.email==="admin@gmail.com") {
